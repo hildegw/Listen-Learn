@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Listen-Learn</string>
+    <string name="button_listen">Listen</string>
+    <string name="button_select">Select</string>
+    <string name="button_popular">Popular</string>
+    <string name="button_categories">Categories</string>
 </resources>
