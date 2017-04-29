@@ -35,7 +35,7 @@
             <TextView
                 android:id="@+id/browse"
                 style="@style/ButtonStyle"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorPrimary"
                 android:text="@string/button_browse"
                 android:textAlignment="center"/>
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -48,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        //todo explain Activity purpose
+        String purpose = "This app provides audio content for language students to listen to. " +
+                "E.g. short stories, poems, or podcasts. Content is managed on a server and categorized by difficulty.";
+        TextView listenPurpose = (TextView) findViewById(R.id.purpose);
+        listenPurpose.setText(purpose);
     }
 }

@@ -48,4 +48,10 @@ tools:context="com.example.android.listen_learn.MainActivity">
         android:text="@string/button_browse"
         android:textAlignment="center"/>
 
+    <TextView
+        android:id="@+id/purpose"
+        style="@style/TextStyle"
+        android:layout_margin="@dimen/padding"
+        android:text="purpose"/>
+
 </LinearLayout>
