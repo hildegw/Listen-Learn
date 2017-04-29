@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Listen-Learn</string>
-    <string name="button_listen">Listen</string>
-    <string name="button_select">Select</string>
+    <string name="app_name">Listen and Learn</string>
+    <string name="button_listen">Listening</string>
+    <string name="button_playlist">My Playlist</string>
     <string name="button_popular">Popular</string>
-    <string name="button_categories">Categories</string>
+    <string name="button_browse">Browse</string>
 </resources>
