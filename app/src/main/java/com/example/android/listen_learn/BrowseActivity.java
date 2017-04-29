@@ -15,7 +15,8 @@ public class BrowseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.browse);
 
-        //todo show categories according to difficulty
+        //todo: click listeners for categories
+        //todo: lists of available content for each category
 
 
         //Set click listeners and intents to go to other Activities
@@ -45,7 +46,9 @@ public class BrowseActivity extends AppCompatActivity {
         });
 
         //todo explain Activity purpose
-        String purpose = "purpose of activity";
+        String purpose = "Students can choose between three categories of content. " +
+                "Clicking on a category leads to a list of available content (fetched via JSON from server) " +
+                "within a new Activity. Titles from each category can then be added to the student's playlist.";
         TextView listenPurpose = (TextView) findViewById(R.id.purpose);
         listenPurpose.setText(purpose);
     }

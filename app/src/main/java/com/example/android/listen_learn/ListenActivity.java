@@ -20,7 +20,7 @@ public class ListenActivity extends AppCompatActivity {
         TextView listenView = (TextView) findViewById(R.id.listen);
         listenView.setText(currentTitle);
         //show info for current title
-        String listenInfo = "by Edgar Allan Poe (level: difficult)\n\n" +       //placeholder
+        String listenInfo = "by Edgar Allan Poe\n\n" +       //placeholder
                 "The poem questions the way one can distinguish between reality and fantasy, asking, " +
                 "\"Is all that we see or seem but a dream within a dream?\"";
         TextView listenTextView = (TextView) findViewById(R.id.listen_info);

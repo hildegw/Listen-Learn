@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         //todo explain Activity purpose
         String purpose = "This app provides audio content for language students to listen to. " +
-                "E.g. short stories, poems, or podcasts. Content is managed on a server and categorized by difficulty.";
+                "Content is managed on a server and accessed via GSON library and MediaPlayer Class.";
         TextView listenPurpose = (TextView) findViewById(R.id.purpose);
         listenPurpose.setText(purpose);
     }

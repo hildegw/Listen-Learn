@@ -4,4 +4,7 @@
     <string name="button_playlist">My Playlist</string>
     <string name="button_popular">Popular</string>
     <string name="button_browse">Browse</string>
+    <string name="poems">Poems</string>
+    <string name="short_stories">Short Stories</string>
+    <string name="podcasts">Podcasts</string>
 </resources>

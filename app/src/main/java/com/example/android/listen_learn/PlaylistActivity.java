@@ -15,7 +15,14 @@ public class PlaylistActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.playlist);
 
-        //todo show user specific list of titles and their difficulty
+        //todo: show user specific list of titles, stored locally in Shared Preferences
+        //todo: set up list view
+        String playlist1 = "A Dream within a Dream \nby Edgar Allen Poe";      //placeholder
+        TextView play1Text = (TextView) findViewById(R.id.play1);
+        play1Text.setText(playlist1);
+
+        //todo: user can delete titles from playlist, i.e. edit Shared Preferences
+        //todo: user can change order of titles in playlist, e.g. via clicking on up/down arrows
 
         //Set click listeners and intents to go to other Activities
         View listenView = (View) findViewById(R.id.listen);
@@ -44,7 +51,9 @@ public class PlaylistActivity extends AppCompatActivity {
         });
 
         //todo explain Activity purpose
-        String purpose = "purpose of activity";
+        String purpose = "The playlist is user specific and stored locally via Shared Preferences. " +
+                "Titles are presented as ListView, and can be deleted, or moved up and down (use Click Listeners). " +
+                "Because this is a potentially long list, no cross-navigation to Browse and Popular is possible.";
         TextView listenPurpose = (TextView) findViewById(R.id.purpose);
         listenPurpose.setText(purpose);
     }
