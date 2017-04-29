@@ -24,8 +24,7 @@ public class BrowseActivity extends AppCompatActivity {
         listenView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent listenIntent = new Intent(BrowseActivity.this, ListenActivity.class);
-                startActivity(listenIntent);
+                startActivity(new Intent(BrowseActivity.this, ListenActivity.class)); //inline Intent
             }
         });
         View popularView = (View) findViewById(R.id.popular);
