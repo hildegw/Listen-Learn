@@ -20,7 +20,7 @@
 
         <activity android:name=".ListenActivity"
             android:parentActivityName=".MainActivity"
-            android:label="Listen"/>
+            android:label="Listening"/>
         <activity android:name=".PopularActivity"
             android:parentActivityName=".MainActivity"
             android:label="Popular"/>
