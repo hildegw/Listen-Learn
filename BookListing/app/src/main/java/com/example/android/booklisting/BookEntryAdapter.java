@@ -10,11 +10,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-
-/**
- * Created by hildegw on 5/19/17.
- */
-
 //This RecyclerView Adapter lists Author and Title results from the search
 
 public class BookEntryAdapter extends RecyclerView.Adapter<BookEntryAdapter.ViewHolder>  {

@@ -2,10 +2,7 @@ package com.example.android.booklisting;
 
 import android.content.Context;
 
-
-/**
- * Created by hildegw on 5/19/17.
- */
+//This class holds the data structure for the list entries shown to user
 
 public class BookEntry {
 

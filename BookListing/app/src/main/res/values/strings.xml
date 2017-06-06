@@ -3,4 +3,6 @@
     <string name="search_google">Search Google Books </string>
     <string name="search">search</string>
     <string name="find_books">find books</string>
+    <string name="no_data_found">no data found</string>
+    <string name="no_Internet">please check your Internet connection</string>
 </resources>
