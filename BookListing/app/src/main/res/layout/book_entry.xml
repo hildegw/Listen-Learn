@@ -5,30 +5,29 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/title"
             android:fontFamily="sans-serif-medium"
             android:maxLines="2"
             android:textSize="16sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="8dp"
-            tools:text="To kill a mockingbird"/>
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="4dp"
+            android:layout_marginTop="4dp"
+            tools:text="To kill a mockingbird"
+            android:background="@android:color/background_light"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/author"
-            android:ellipsize="end"
+            android:fontFamily="sans-serif-smallcaps"
             android:maxLines="1"
-            android:textAllCaps="true"
             android:textSize="16sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="8dp"
-            tools:text="Harper Lee"/>
-
-
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="8dp"
+            tools:text="Harper Lee"
+            android:background="@android:color/background_light"/>
 </LinearLayout>

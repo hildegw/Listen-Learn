@@ -70,20 +70,20 @@ public class BooksActivity extends AppCompatActivity implements LoaderManager.Lo
 
     //UI is being populated with EQ events
     @Override
-    public void onLoadFinished(android.content.Loader<ArrayList<BookEntry>> loader, ArrayList<BookEntry> events) {
-        if (events == null) {
-            return;
-        }
+    public void onLoadFinished(android.content.Loader<ArrayList<BookEntry>> loader, ArrayList<BookEntry> books) {
         //hide loading bar
         ProgressBar pg = (ProgressBar) findViewById(R.id.loading);
         pg.setVisibility(View.GONE);
+        if (books.size() < 1) {
+            //in case there is no data to display, set TextView  to "no data found"
+            mEmptyStateTextView = (TextView) findViewById(R.id.no_data);
+            mEmptyStateTextView.setText(R.string.no_data_found);
+            return;
+        }
         // specify an adapter
         Log.i("onLoadFinished", "done");
-        BookEntryAdapter eqEntryAdapter = new BookEntryAdapter(this, events);
+        BookEntryAdapter eqEntryAdapter = new BookEntryAdapter(this, books);
         mRecyclerView.setAdapter(eqEntryAdapter);
-        //in case there is no data to display, set TextView from earthquake_activity.xml
-        mEmptyStateTextView = (TextView) findViewById(R.id.no_data);
-        mEmptyStateTextView.setText(R.string.no_data_found);
     }
 
     @Override

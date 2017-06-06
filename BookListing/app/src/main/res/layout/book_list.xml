@@ -19,7 +19,8 @@
         android:id="@+id/recycle_entries"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        />
 
     <!-- Text View for empty data state, will only show if Recycler has no data -->
     <TextView

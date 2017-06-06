@@ -57,7 +57,7 @@ public class BookEntryAdapter extends RecyclerView.Adapter<BookEntryAdapter.View
         //get element from dataset at this position and replace the contents of the view with that element
         final BookEntry currentEntry = mBooks.get(position);
         vh.titleView.setText(currentEntry.getTitle());
-        vh.authorView.setText(currentEntry.getAuthor());
+        vh.authorView.setText(currentEntry.getAuthors());
     }
 
     // Return the size of your dataset (invoked by the layout manager)

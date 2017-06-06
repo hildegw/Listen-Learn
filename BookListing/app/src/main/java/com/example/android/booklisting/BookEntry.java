@@ -8,19 +8,19 @@ public class BookEntry {
 
     private Context mContext;
     private String mTitle;
-    private String mAuthor;
+    private String mAuthors;
 
-    public BookEntry(Context context, String title, String author){
+    public BookEntry(Context context, String title, String authors){
         mContext = context;
         mTitle = title;
-        mAuthor = author;
+        mAuthors = authors;
     }
 
     public String getTitle() {
         return mTitle;
     }
 
-    public String getAuthor(){
-        return mAuthor;
+    public String getAuthors(){
+        return mAuthors;
     }
 }

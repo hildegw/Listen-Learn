@@ -36,20 +36,10 @@ public final class QueryUtils {
     //Return a list of BookEntry objects that has been built up from parsing a JSON response.
     public static ArrayList<BookEntry> searchGoogleBooks(Activity context, String jsonResponse) {
 
-        /*/todo-remove: slow down loading for testing
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
-
         // Create an empty ArrayList that we can start adding earthquakes to
         ArrayList<BookEntry> books = new ArrayList<>();
 
-        // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
-        // is formatted, a JSONException exception object will be thrown.
-        // Catch the exception so the app doesn't crash, and print the error message to the logs.
-        //todo: extract title and auther from Google Books search
+        //extract title and authors from Google Books search
         try {
             JSONObject jsonRoot = new JSONObject(jsonResponse);
             JSONArray jsonArray = jsonRoot.getJSONArray("items");
@@ -58,18 +48,28 @@ public final class QueryUtils {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 JSONObject volumeInfo = jsonObject.getJSONObject("volumeInfo");
                 String title = volumeInfo.getString("title");
-                JSONArray authors = volumeInfo.getJSONArray("authors");
-                String author1 = authors.getString(0);              //todo: more than one author
-
+                String authors = "";
+                try {
+                    JSONArray authorsArray = volumeInfo.getJSONArray("authors");
+                    //fetch author name from JSON array and make pretty string
+                    StringBuilder strB = new StringBuilder();
+                    if (authorsArray.length() > 0) {                    //check, if author exists
+                        for (int j = 0; j < authorsArray.length(); j++) {
+                            strB.append(authorsArray.getString(j));
+                            if (j < authorsArray.length() - 1) {
+                                strB.append(", ");
+                            }
+                        }
+                        authors = strB.toString();
+                    }
+                } catch (JSONException e) {
+                    Log.e(LOG_TAG, "Problem parsing authors information", e);
+                }
                 //add each book to data set
-                books.add(new BookEntry(context,title, author1));
+                books.add(new BookEntry(context,title, authors));
             }
-
         } catch (JSONException e) {
-            // If an error is thrown when executing any of the above statements in the "try" block,
-            // catch the exception here, so the app doesn't crash. Print a log message
-            // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing JSON results", e);
+            Log.e(LOG_TAG, "Problem parsing JSON results", e);
         }
         // Return the list of books
         return books;
@@ -80,9 +80,8 @@ public final class QueryUtils {
     public static ArrayList<BookEntry> fetchBooks(Activity context, String searchString) {
         //create search request based on search string
         URL url = createUrl("https://www.googleapis.com/books/v1/volumes?q=" + searchString);
-        //URL url = createUrl(test);
         if (url == null) {
-            Log.e("url == null", "error!!!");
+            Log.e(LOG_TAG, "Error: url == null, cannot fetch book list");
             return null;
         }
         // Perform HTTP request to the URL and receive a JSON response back
@@ -94,18 +93,17 @@ public final class QueryUtils {
         }
 
         // Call searchGoogleBooks QueryUtils method to extract relevant fields and return BookEntry array
-        ArrayList<BookEntry> books = searchGoogleBooks(context, jsonResponse);
-        return books;
+        return searchGoogleBooks(context, jsonResponse);
     }
 
-    //todo: Create query Url, redundant to fetchBooks????
+    //create URL from string input
     private static URL createUrl(String stringUrl) {
         URL url = null;
         try {
             url = new URL(stringUrl);
         } catch (MalformedURLException e) {
             Log.e(LOG_TAG, "Error with creating URL ", e);
-            return null;        //todo how to handle the error????
+            return null;
         }
         return url;
     }
