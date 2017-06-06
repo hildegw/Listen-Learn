@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private KeyListener editTextKeyListener;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //todo remove
         /*/Set keyListener for EditText field
         editTextSearchEntry.setKeyListener(editTextKeyListener);
         editTextKeyListener = editTextSearchEntry.getKeyListener();
@@ -34,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view)
                     {String searchString = editTextSearchEntry.getText().toString().toLowerCase();}
                 });
+
+
+
 
     }
 }
