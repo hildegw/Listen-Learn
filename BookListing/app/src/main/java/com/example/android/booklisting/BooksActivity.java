@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -44,7 +43,6 @@ public class BooksActivity extends AppCompatActivity implements LoaderManager.Lo
             LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(1, null, this);
         } else {
-            Log.i("no Internet", "nonono");
             ProgressBar pg = (ProgressBar) findViewById(R.id.loading);
             pg.setVisibility(View.GONE);
             mEmptyStateTextView = (TextView) findViewById(R.id.no_data);
@@ -54,7 +52,7 @@ public class BooksActivity extends AppCompatActivity implements LoaderManager.Lo
         //start Recycler
         mRecyclerView = (RecyclerView) findViewById(R.id.recycle_entries);
         // use this setting to improve performance if you know that changes in content do not change the layout size of the RecyclerView
-        //mRecyclerView.setHasFixedSize(true); todo enable
+        mRecyclerView.setHasFixedSize(true);
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -64,7 +62,6 @@ public class BooksActivity extends AppCompatActivity implements LoaderManager.Lo
     //Loader starts fetching data when created
     @Override
     public android.content.Loader<ArrayList<BookEntry>> onCreateLoader(int id, Bundle args) {
-        Log.i("onCreateLoader", "done");
         return new BooksLoader(BooksActivity.this, this, searchString);
     }
 
@@ -81,7 +78,6 @@ public class BooksActivity extends AppCompatActivity implements LoaderManager.Lo
             return;
         }
         // specify an adapter
-        Log.i("onLoadFinished", "done");
         BookEntryAdapter eqEntryAdapter = new BookEntryAdapter(this, books);
         mRecyclerView.setAdapter(eqEntryAdapter);
     }
@@ -89,8 +85,7 @@ public class BooksActivity extends AppCompatActivity implements LoaderManager.Lo
     @Override
     public void onLoaderReset(android.content.Loader<ArrayList<BookEntry>> loader) {
         // start with no data whe Activity is killed
-        Log.i("onLoadReset", "done");
-        BookEntryAdapter eqEntryAdapter = new BookEntryAdapter(this, null); //todo: better way to clear adapter?
+        BookEntryAdapter eqEntryAdapter = new BookEntryAdapter(this, null);
         mRecyclerView.setAdapter(eqEntryAdapter);
     }
 }

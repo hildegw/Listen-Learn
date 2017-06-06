@@ -79,7 +79,7 @@ public final class QueryUtils {
     //fetch data from Google Books with search string from TextEdit field
     public static ArrayList<BookEntry> fetchBooks(Activity context, String searchString) {
         //create search request based on search string
-        URL url = createUrl("https://www.googleapis.com/books/v1/volumes?q=" + searchString);
+        URL url = createUrl("https://www.googleapis.com/books/v1/volumes?q=" + searchString + "&maxResults=40");
         if (url == null) {
             Log.e(LOG_TAG, "Error: url == null, cannot fetch book list");
             return null;
@@ -135,7 +135,7 @@ public final class QueryUtils {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
+            Log.e(LOG_TAG, "Problem retrieving JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
