@@ -22,9 +22,9 @@ import java.util.ArrayList;
  */
 public final class QueryUtils {
 
-    private static String test =
+    /*private static String test =
             //"https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2017-06-01&endtime=2017-06-03&minmagnitude=4";
-            "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=4&limit=20";
+            "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=4&limit=20";*/
 
     public static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
@@ -34,7 +34,7 @@ public final class QueryUtils {
 
 
     //Return a list of BookEntry objects that has been built up from parsing a JSON response.
-    public static ArrayList<BookEntry> searchGoogleBooks(Activity context, String searchString) {
+    public static ArrayList<BookEntry> searchGoogleBooks(Activity context, String jsonResponse) {
 
         /*/todo-remove: slow down loading for testing
         try {
@@ -51,16 +51,18 @@ public final class QueryUtils {
         // Catch the exception so the app doesn't crash, and print the error message to the logs.
         //todo: extract title and auther from Google Books search
         try {
-            JSONObject jsonEQRoot = new JSONObject(searchString);
-            JSONArray jsonEQFeatureArray = jsonEQRoot.getJSONArray("features");
-            // looping through all Feature entries
-            for (int i = 0; i < jsonEQFeatureArray.length(); i++) {
-                JSONObject jsonEQfeature = jsonEQFeatureArray.getJSONObject(i);
-                JSONObject jsonEQproperties = jsonEQfeature.getJSONObject("properties");
-                String place = jsonEQproperties.getString("place");
-                String time = jsonEQproperties.getString("time");
-                //add each earthquake event to data set
-                books.add(new BookEntry(context,place, time)); //todo: title, author instead place, time
+            JSONObject jsonRoot = new JSONObject(jsonResponse);
+            JSONArray jsonArray = jsonRoot.getJSONArray("items");
+            // looping through all item entries
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                JSONObject volumeInfo = jsonObject.getJSONObject("volumeInfo");
+                String title = volumeInfo.getString("title");
+                JSONArray authors = volumeInfo.getJSONArray("authors");
+                String author1 = authors.getString(0);              //todo: more than one author
+
+                //add each book to data set
+                books.add(new BookEntry(context,title, author1));
             }
 
         } catch (JSONException e) {
@@ -74,10 +76,11 @@ public final class QueryUtils {
     }
 
 
-    //fetch data from Google Books
-    public static ArrayList<BookEntry> fetchBooks(Activity context) {
-        // Create URL object
-        URL url = createUrl(test);
+    //fetch data from Google Books with search string from TextEdit field
+    public static ArrayList<BookEntry> fetchBooks(Activity context, String searchString) {
+        //create search request based on search string
+        URL url = createUrl("https://www.googleapis.com/books/v1/volumes?q=" + searchString);
+        //URL url = createUrl(test);
         if (url == null) {
             Log.e("url == null", "error!!!");
             return null;

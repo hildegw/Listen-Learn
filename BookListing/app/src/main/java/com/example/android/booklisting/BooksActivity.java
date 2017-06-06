@@ -2,6 +2,7 @@ package com.example.android.booklisting;
 
 import android.app.LoaderManager;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -22,15 +23,16 @@ public class BooksActivity extends AppCompatActivity implements LoaderManager.Lo
     private RecyclerView.Adapter mAdapter;  //comes as part of recycler view
     private RecyclerView.LayoutManager mLayoutManager;
     private Context mContext;
+    private String searchString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
 
-        /*/todo retrieve data if necessary
+        //get search string from Main Activity
         Intent intent = getIntent();
-        String value = intent.getStringExtra("key"); //if it's a string you stored.*/
+        searchString = intent.getStringExtra("key");
 
         //check for Internet connection
         ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -63,7 +65,7 @@ public class BooksActivity extends AppCompatActivity implements LoaderManager.Lo
     @Override
     public android.content.Loader<ArrayList<BookEntry>> onCreateLoader(int id, Bundle args) {
         Log.i("onCreateLoader", "done");
-        return new BooksLoader(BooksActivity.this, this);
+        return new BooksLoader(BooksActivity.this, this, searchString);
     }
 
     //UI is being populated with EQ events

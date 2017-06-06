@@ -9,10 +9,12 @@ import java.util.ArrayList;
 public class BooksLoader extends AsyncTaskLoader<ArrayList<BookEntry>> {
 
     private Activity mAContext;
+    private String mSearchString;
 
-    public BooksLoader(Context context, Activity aContext) {
+    public BooksLoader(Context context, Activity aContext, String searchString) {
         super(context);
         mAContext = aContext;
+        mSearchString = searchString;
     }
 
     @Override
@@ -22,7 +24,7 @@ public class BooksLoader extends AsyncTaskLoader<ArrayList<BookEntry>> {
 
     @Override
     public ArrayList<BookEntry> loadInBackground() {
-        ArrayList<BookEntry> events = QueryUtils.fetchBooks(mAContext);
-        return events;
+        ArrayList<BookEntry> books = QueryUtils.fetchBooks(mAContext, mSearchString);
+        return books;
     }
 }

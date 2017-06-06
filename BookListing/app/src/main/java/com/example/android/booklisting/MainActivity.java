@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
         searchButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View view) {
-                        searchString = editTextSearchEntry.getText().toString().toLowerCase(); //todo: give search string to QueryUtils
+                        searchString = editTextSearchEntry.getText().toString().toLowerCase();
                         Intent booksIntent = new Intent(MainActivity.this, BooksActivity.class);
-                        //booksIntent.putExtra("key", value); //Optional parameters todo
+                        booksIntent.putExtra("key", searchString); //hand over search string to Books Activity
                         MainActivity.this.startActivity(booksIntent);
                     }
                 });
