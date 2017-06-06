@@ -16,7 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class BooksActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<BookEntry>>  {
-
+    public static final String LOG_TAG = BooksActivity.class.getName();
     private TextView mEmptyStateTextView;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;  //comes as part of recycler view
@@ -26,6 +26,8 @@ public class BooksActivity extends AppCompatActivity implements LoaderManager.Lo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.book_list);
+
         /*/todo retrieve data if necessary
         Intent intent = getIntent();
         String value = intent.getStringExtra("key"); //if it's a string you stored.*/
@@ -47,12 +49,10 @@ public class BooksActivity extends AppCompatActivity implements LoaderManager.Lo
             mEmptyStateTextView.setText(R.string.no_Internet);
         }
 
-
         //start Recycler
         mRecyclerView = (RecyclerView) findViewById(R.id.recycle_entries);
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
+        // use this setting to improve performance if you know that changes in content do not change the layout size of the RecyclerView
+        //mRecyclerView.setHasFixedSize(true); todo enable
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);

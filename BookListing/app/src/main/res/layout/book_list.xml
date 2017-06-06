@@ -15,7 +15,6 @@
         android:layout_margin="16dp"
         />
 
-    <!-- A RecyclerView with some commonly used attributes -->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle_entries"
         android:scrollbars="vertical"

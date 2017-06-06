@@ -11,6 +11,7 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = MainActivity.class.getName();
+    public String searchString;
     private EditText editTextSearchEntry;
 
     @Override
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         searchButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View view) {
-                        String searchString = editTextSearchEntry.getText().toString().toLowerCase();
+                        searchString = editTextSearchEntry.getText().toString().toLowerCase(); //todo: give search string to QueryUtils
                         Intent booksIntent = new Intent(MainActivity.this, BooksActivity.class);
                         //booksIntent.putExtra("key", value); //Optional parameters todo
                         MainActivity.this.startActivity(booksIntent);
